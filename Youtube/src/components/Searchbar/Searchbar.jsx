@@ -1,6 +1,12 @@
 import './Searchbar.css'
+import { useState } from 'react';
 
-function Searchbar(){
+function Searchbar({ setSearchQuery }) {
+    const [inputValue, setInputValue] = useState('');
+
+    const handleSearch = () => {
+        setSearchQuery(inputValue);
+    };
 
     const Search1icon = [
         {id:1 , url:"https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/create.png?raw=true"},
@@ -31,7 +37,14 @@ function Searchbar(){
             <div className="mainSearch">
 
                 <div className="search1">
-                    <input type="text" className="searchBox" placeholder='Search'/>
+                    <input
+                        type="text"
+                        className="searchBox"
+                        placeholder='Search'
+                        value={inputValue}
+                        onChange={(e) => setInputValue(e.target.value)}
+                    />
+                    <button onClick={handleSearch}>Search</button>
                     <div className="searchicon">
                         <img src="https://github.com/PatelNeelMahesh/frontend_tasks/blob/main/02.youtube-clone/assets/search.png?raw=true" alt="" />
                     </div>
